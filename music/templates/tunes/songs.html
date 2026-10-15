@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }} · Spotibai{% endblock %}
+
+{% block content %}
+<h1>{{ title }}</h1>
+<div class="grid">{% for song in songs %}{% include 'tunes/song_card.html' %}{% endfor %}</div>
+{% endblock %}

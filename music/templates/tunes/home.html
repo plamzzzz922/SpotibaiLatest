@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Home · Spotibai{% endblock %}
+
+{% block content %}
+<h1>Home</h1>
+
+<h2><a href="{% url 'liked' %}">Liked Songs &#9656;</a></h2>
+<div class="grid">{% for song in liked %}{% include 'tunes/song_card.html' %}{% endfor %}</div>
+
+<h2><a href="{% url 'playlists' %}">My Playlist &#9656;</a></h2>
+<div class="grid">
+  {% for p in playlists %}
+  <a class="card" href="{% url 'playlist' p.id %}"><span class="cover"></span><span class="title">{{ p.name }}</span></a>
+  {% endfor %}
+</div>
+
+<h2><a href="{% url 'trending' %}">Trending now &#9656;</a></h2>
+<div class="grid">{% for song in trending %}{% include 'tunes/song_card.html' %}{% endfor %}</div>
+{% endblock %}

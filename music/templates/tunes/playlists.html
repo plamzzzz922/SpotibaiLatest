@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}My Playlist · Spotibai{% endblock %}
+
+{% block content %}
+<h1>My Playlist</h1>
+<div class="grid">
+  {% for p in playlists %}
+  <a class="card" href="{% url 'playlist' p.id %}"><span class="cover"></span><span class="title">{{ p.name }}</span></a>
+  {% endfor %}
+</div>
+{% endblock %}

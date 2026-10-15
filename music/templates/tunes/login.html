@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Log in · Spotibai{% endblock %}
+{% block body_class %}auth-page{% endblock %}
+{% block sidebar %}{% endblock %}
+{% block header %}{% endblock %}
+{% block footer %}{% endblock %}
+{% block main_class %}auth{% endblock %}
+
+{% block content %}
+<div class="avatar" aria-hidden="true"></div>
+<h1>Welcome, Log in</h1>
+<!-- Prototype: the inputs have no name, so nothing is sent; the button just opens Home. -->
+<form action="{% url 'home' %}">
+  <label class="sr-only" for="user">Username or Email</label>
+  <input id="user" type="text" placeholder="Username or Email">
+  <label class="sr-only" for="pass">Password</label>
+  <input id="pass" type="password" placeholder="Password">
+  <button class="btn" type="submit">Log in</button>
+</form>
+<p>Don't have an account? <a href="{% url 'home' %}">Create one</a></p>
+{% endblock %}

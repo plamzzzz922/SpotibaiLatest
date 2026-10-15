@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}{{ song.title }} · Spotibai{% endblock %}
+{% block main_class %}player{% endblock %}
+
+{% block content %}
+{% load static %}
+{% if song.cover %}
+  <img class="art" src="{% static song.cover %}" alt="Cover for {{ song.title }}">
+{% else %}
+  <div class="art" aria-hidden="true"></div>
+{% endif %}
+<div>
+  <h1>{{ song.title }}</h1>
+  <p class="artist">By: {{ song.artist }}</p>
+  <div class="controls">
+    <a href="{% url 'player' prev_song.id %}" aria-label="Previous song">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 6v12L2 12zM22 6v12l-9-6z"/></svg>
+    </a>
+    <button class="play" type="button" aria-label="Play">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+    </button>
+    <a href="{% url 'player' next_song.id %}" aria-label="Next song">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 6v12l9-6zM2 6v12l9-6z"/></svg>
+    </a>
+  </div>
+</div>
+{% endblock %}

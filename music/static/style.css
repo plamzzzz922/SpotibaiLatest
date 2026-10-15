@@ -1,0 +1,154 @@
+/* Color palette: change the look of the whole site here */
+:root {
+  --page: #f6f1e7;           /* warm cream: page background */
+  --ink: #1b1b2f;           /* deep navy: text */
+  --muted: #55566b;         /* softer text for artist names */
+  --sidebar: #1f2a44;       /* deep navy: sidebar and play button */
+  --sidebar-ink: #e9edf7;   /* sidebar text */
+  --sidebar-hover: #34426b; /* sidebar hover and active */
+  --accent: #e07a5f;        /* coral: active marker and link underlines */
+  --tile-1: #e07a5f;        /* cover tiles, repeated in this order */
+  --tile-2: #81b29a;
+  --tile-3: #f2cc8f;
+  --tile-4: #3d5a80;
+  --tile-5: #98c1d9;
+  --tile-6: #8d6a9f;
+}
+
+* { box-sizing: border-box; margin: 0; }
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: var(--page); color: var(--ink);
+  display: grid; grid-template-columns: 220px minmax(0, 1fr); min-height: 100vh;
+}
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
+
+/* Sidebar */
+.sidebar {
+  position: sticky; top: 0; height: 100vh; padding: 24px 14px;
+  display: flex; flex-direction: column; gap: 24px;
+  background: var(--sidebar); color: var(--sidebar-ink);
+}
+.brand { padding: 0 10px; font-size: 24px; font-weight: 800; color: #fff; text-decoration: none; }
+.sidebar nav { display: flex; flex-direction: column; gap: 4px; }
+.sidebar nav a, .logout {
+  display: flex; align-items: center; gap: 12px; padding: 11px 12px;
+  border-radius: 8px; font-weight: 600; text-decoration: none;
+}
+.sidebar nav a:hover, .logout:hover { background: var(--sidebar-hover); }
+.sidebar nav a[aria-current="page"] { background: var(--sidebar-hover); color: #fff; box-shadow: inset 3px 0 0 var(--accent); }
+.sidebar svg { width: 20px; height: 20px; fill: currentColor; flex: none; }
+.logout { margin-top: auto; }
+
+/* Page wrapper, header and footer */
+.page { display: flex; flex-direction: column; min-width: 0; min-height: 100vh; }
+.topbar { display: flex; justify-content: flex-end; padding: 16px 36px 0; }
+.avatar-link { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 700; text-decoration: none; }
+.dot { width: 32px; height: 32px; border-radius: 50%; background: var(--tile-5); }
+.footer { padding: 18px 36px; border-top: 1px solid #e3dccb; font-size: 13px; color: var(--muted); }
+
+/* Main area */
+.main { flex: 1; width: 100%; padding: 12px 36px 40px; max-width: 1200px; }
+.main h1 { font-size: 30px; margin-bottom: 8px; }
+.main h2 { font-size: 22px; margin: 28px 0 14px; }
+.main h2 a { text-decoration: none; }
+.main h2 a:hover { text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 5px; }
+.main > h1 + .grid { margin-top: 22px; }
+
+/* Song and playlist cards */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 24px 18px; }
+.card { display: block; min-width: 0; text-decoration: none; }
+.cover { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 10px; background: var(--tile-1); transition: transform 0.15s; }
+.card:hover .cover { transform: translateY(-3px); }
+.card:nth-child(6n+2) .cover { background: var(--tile-2); }
+.card:nth-child(6n+3) .cover { background: var(--tile-3); }
+.card:nth-child(6n+4) .cover { background: var(--tile-4); }
+.card:nth-child(6n+5) .cover { background: var(--tile-5); }
+.card:nth-child(6n+6) .cover { background: var(--tile-6); }
+.title { display: block; margin-top: 8px; font-size: 14px; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.artist { display: block; font-size: 12px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* Player page */
+.player { display: grid; grid-template-columns: minmax(0, 340px) 1fr; gap: 48px; align-items: center; }
+.art { display: block; width: 340px; height: 340px; max-width: 100%; object-fit: cover; border-radius: 14px; background: var(--tile-4); }
+.player .artist { font-size: 15px; }
+.controls { display: flex; align-items: center; gap: 24px; margin-top: 28px; }
+.controls a, .controls button {
+  display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px;
+  border: 0; border-radius: 50%; background: none; color: var(--ink); cursor: pointer;
+}
+.controls a:hover { background: rgba(0, 0, 0, 0.07); }
+.controls .play { width: 64px; height: 64px; background: var(--sidebar); color: var(--page); }
+.controls svg { width: 28px; height: 28px; fill: currentColor; }
+
+/* Account page */
+.avatar { width: 150px; height: 150px; border-radius: 50%; background: var(--tile-5); }
+.account { display: flex; align-items: center; gap: 36px; }
+.account nav { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; margin-top: 18px; }
+.account nav a { border-bottom: 2px solid var(--accent); font-weight: 700; text-decoration: none; }
+
+/* Login page */
+.auth-page { grid-template-columns: 1fr; background: var(--sidebar); }
+.auth-page .page { align-items: center; justify-content: center; }
+.auth {
+  flex: none; width: min(400px, 92vw); padding: 36px; border-radius: 16px; background: var(--page);
+  display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center;
+}
+.auth .avatar { width: 110px; height: 110px; }
+.auth form { width: 100%; display: flex; flex-direction: column; gap: 10px; }
+.auth input {
+  width: 100%; padding: 12px 14px; border: 1px solid #d8d0bd; border-radius: 8px;
+  background: #fff; color: var(--ink); font: inherit;
+}
+.btn { padding: 12px; border: 0; border-radius: 8px; background: var(--sidebar); color: var(--page); font: inherit; font-weight: 700; cursor: pointer; }
+.btn:hover { background: var(--sidebar-hover); }
+.auth p { font-size: 14px; color: var(--muted); }
+.auth p a { color: var(--ink); font-weight: 700; }
+
+/* Narrow windows: sidebar becomes a top strip */
+@media (max-width: 760px) {
+  body { grid-template-columns: 1fr; }
+  .sidebar { position: static; height: auto; flex-direction: row; flex-wrap: wrap; align-items: center; gap: 8px; padding: 12px; }
+  .sidebar nav { flex-direction: row; flex-wrap: wrap; }
+  .logout { margin: 0 0 0 auto; }
+  .topbar { padding: 10px 18px 0; }
+  .main { padding: 12px 18px 28px; }
+  .footer { padding: 14px 18px; }
+  .player { grid-template-columns: 1fr; gap: 24px; }
+  .account { flex-direction: column; align-items: flex-start; }
+}
+
+.page > a.back-button {
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 36px 0;
+  padding: 9px 16px;
+  border: 1px solid var(--sidebar);
+  border-radius: 999px;
+  background: var(--sidebar);
+  color: var(--page);
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.15s, color 0.15s, transform 0.15s;
+}
+
+.page > a.back-button:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.cover {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+@media (max-width: 760px) {
+  .back-button { margin: 10px 18px 0; }
+}

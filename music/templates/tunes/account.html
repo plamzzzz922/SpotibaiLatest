@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Account · Spotibai{% endblock %}
+{% block main_class %}account{% endblock %}
+
+{% block content %}
+<div class="avatar" aria-hidden="true"></div>
+<div>
+  <h1>Username</h1>
+
+  <nav aria-label="Account">
+    <a href="{% url 'about' %}">About Us</a>
+    <a href="{% url 'login' %}">Log Out</a>
+  </nav>
+</div>
+{% endblock %}
